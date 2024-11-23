@@ -24,11 +24,11 @@ class RandomQuotesApp {
     }
   }
 
-  getRandomQuote() {
+  randomQuoteHandler() {
     this.changeCurrentQuote(RandomQuote.getRandomQuote());
   }
 
-  async getRandomQuoteViaAPI() {
+  async getRandomQuoteViaAPIHandler() {
     this.changeCurrentQuote(await RandomQuote.getRandomQuoteViaAPI());
     //вариант с константой:
     // const quoteViaApi = await RandomQuote.getRandomQuoteViaAPI();
@@ -43,9 +43,11 @@ class RandomQuotesApp {
   // }
 
   init() {
-    this.randomQuoteBtn.addEventListener('click', () => this.getRandomQuote());
+    this.randomQuoteBtn.addEventListener('click', () =>
+      this.randomQuoteHandler()
+    );
     this.randomQuoteViaApi.addEventListener('click', () =>
-      this.getRandomQuoteViaAPI()
+      this.getRandomQuoteViaAPIHandler()
     );
   }
 }
