@@ -8,13 +8,26 @@ class RandomQuote {
     const { id, text, author } = quotes[randomIndex];
     return new Quote(id, text, author);
   }
-  static getRandomQuoteViaApi() {
+
+  static async getRandomQuoteViaAPI() {
     const url = 'https://dummyjson.com/quotes/random';
-    const options = { headers: { 'Content-Type': 'aplication/json' } };
-    return fetch(url, options)
-      .then((res) => res.json())
-      .then((quote) => new Quote(quote.id, quote.quote, quote.author))
-      .catch((err) => console.error('Error', err));
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    try {
+      const response = await fetch(url, options);
+      const quote = await response.json();
+      return new Quote(quote.id, quote.quote, quote.author);
+    } catch (err) {
+      console.error('Error:', err);
+    }
   }
+
+  // static getRandomQuoteViaApi() {
+  //   const url = 'https://dummyjson.com/quotes/random';
+  //   const options = { headers: { 'Content-Type': 'aplication/json' } };
+  //   return fetch(url, options)
+  //     .then((res) => res.json())
+  //     .then((quote) => new Quote(quote.id, quote.quote, quote.author))
+  //     .catch((err) => console.error('Error', err));
+  // }
 }
 export default RandomQuote;

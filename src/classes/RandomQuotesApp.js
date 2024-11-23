@@ -28,16 +28,24 @@ class RandomQuotesApp {
     this.changeCurrentQuote(RandomQuote.getRandomQuote());
   }
 
-  getRandomQuoteViaApi() {
-    RandomQuote.getRandomQuoteViaApi().then((quote) =>
-      this.changeCurrentQuote(quote)
-    );
+  async getRandomQuoteViaAPI() {
+    this.changeCurrentQuote(await RandomQuote.getRandomQuoteViaAPI());
+    //вариант с константой:
+    // const quoteViaApi = await RandomQuote.getRandomQuoteViaAPI();
+    // this.changeCurrentQuote(quoteViaApi);
   }
+
+  //вариант без async await:
+  // getRandomQuoteViaAPI() {
+  //   RandomQuote.getRandomQuoteViaAPI().then((quote) =>
+  //     this.changeCurrentQuote(quote)
+  //   );
+  // }
 
   init() {
     this.randomQuoteBtn.addEventListener('click', () => this.getRandomQuote());
     this.randomQuoteViaApi.addEventListener('click', () =>
-      this.getRandomQuoteViaApi()
+      this.getRandomQuoteViaAPI()
     );
   }
 }
