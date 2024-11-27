@@ -10,12 +10,15 @@ class RandomQuote {
   }
 
   static async getRandomQuoteViaAPI() {
-    const url = 'https://dummyjson.com/quotes/random';
+    const url = 'https://dummyjson.com/quotes/random/3';
     const options = { headers: { 'Content-Type': 'application/json' } };
     try {
       const response = await fetch(url, options);
-      const quote = await response.json();
-      return new Quote(quote.id, quote.quote, quote.author);
+      const quotes = await response.json();
+      if (Array.isArray(quotes) && quotes.length > 0) {
+        const quote = quotes[0];
+        return new Quote(quote.id, quote.quote, quote.author);
+      }
     } catch (err) {
       console.error('Error:', err);
     }
