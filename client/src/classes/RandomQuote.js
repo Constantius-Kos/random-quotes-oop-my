@@ -1,7 +1,7 @@
 import quotes from '../data/quotes.js';
 import MathUtils from '../utils/MathUtils.js';
 import Quote from './Quote.js';
-
+import config from '../../config.js';
 class RandomQuote {
   static getRandomQuote() {
     const randomIndex = MathUtils.generateRandomInt(quotes.length);
@@ -10,7 +10,7 @@ class RandomQuote {
   }
 
   static async getRandomQuoteViaOwnAPI() {
-    const url = 'http://localhost:2000/quotes/random-single';
+    const url = `${config.API_URL}/quotes/random-single`;
     const options = { headers: { 'Content-Type': 'application/json' } };
     try {
       const response = await fetch(url, options);
@@ -22,7 +22,7 @@ class RandomQuote {
   }
 
   static async getRandomQuoteViaPublicAPI() {
-    const url = 'https://dummyjson.com/quotes/random/3';
+    const url = `${config.PUBLIC_API_URL}/quotes/random/3`;
     const options = { headers: { 'Content-Type': 'application/json' } };
     try {
       const response = await fetch(url, options);

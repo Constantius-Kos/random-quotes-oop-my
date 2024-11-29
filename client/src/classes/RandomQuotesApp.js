@@ -54,10 +54,10 @@ class RandomQuotesApp {
       this.randomQuoteHandler()
     );
     this.randomQuoteViaPublicApiBtn.addEventListener('click', () =>
-      this.handleRandomQuoteViaPublicAPI()
+      this.handleRandomQuoteViaApi()
     );
     this.randomQuoteViaOwnApiBtn.addEventListener('click', () =>
-      this.handleRandomQuoteViaOwnAPI(true)
+      this.handleRandomQuoteViaApi(true)
     );
   }
 }
