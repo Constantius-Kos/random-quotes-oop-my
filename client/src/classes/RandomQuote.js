@@ -9,7 +9,19 @@ class RandomQuote {
     return new Quote(id, text, author);
   }
 
-  static async getRandomQuoteViaAPI() {
+  static async getRandomQuoteViaOwnAPI() {
+    const url = 'http://localhost:2000/quotes/random-single';
+    const options = { headers: { 'Content-Type': 'application/json' } };
+    try {
+      const response = await fetch(url, options);
+      const quote = await response.json();
+      return new Quote(quote.id, quote.text, quote.author);
+    } catch (err) {
+      console.error('Error:', err);
+    }
+  }
+
+  static async getRandomQuoteViaPublicAPI() {
     const url = 'https://dummyjson.com/quotes/random/3';
     const options = { headers: { 'Content-Type': 'application/json' } };
     try {

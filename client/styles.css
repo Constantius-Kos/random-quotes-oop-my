@@ -5,13 +5,16 @@ body {
 }
 
 .container {
-  max-width: 600px;
-  margin: 30px auto;
+  max-width: 900px;
+  margin: auto auto;
   text-align: center;
 }
 .button-container {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* Позволяет кнопкам переноситься на следующую строку */
+  gap: 1px;
+  margin-top: 10px;
 }
 
 .btn {
@@ -19,11 +22,12 @@ body {
   font-size: 16px;
   background-color: #021e3c;
   color: #fff;
-
-  margin: 20px 10px;
+  flex-shrink: 0; /* Запрещает сужать кнопки */
+  white-space: nowrap;
+  margin: 10px 10px;
   cursor: pointer;
   border-radius: 10px;
-  border: 1px solid gold;
+  border: 2px solid gold;
 }
 
 .btn-primary {
@@ -36,12 +40,17 @@ body {
   background-color: #032e00;
 }
 .btn-secondary:hover {
-  background-color: #087b00;
+  background-color: #087100;
 }
-
+.btn-secondary-ternary {
+  background-color: #370000;
+}
+.btn-secondary-ternary:hover {
+  background-color: #770000;
+}
 button .fas {
   margin-left: 10px; /* Отступ между иконкой и текстом */
-  color: gold; /* Цвет иконки (белый для кнопки с цветным фоном) */
+  color: rgb(255, 170, 0); /* Цвет иконки (белый для кнопки с цветным фоном) */
   font-size: 16px; /* Размер иконки */
 }
 

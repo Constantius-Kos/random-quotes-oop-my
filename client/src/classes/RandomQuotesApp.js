@@ -7,7 +7,12 @@ class RandomQuotesApp {
     this.quoteAuthorElement = document.getElementById('author');
     this.quoteTextElement = document.getElementById('quote-text');
     this.randomQuoteBtn = document.getElementById('random-quote-btn');
-    this.randomQuoteViaApi = document.getElementById('random-quote-api-btn');
+    this.randomQuoteViaPublicApiBtn = document.getElementById(
+      'random-quote-public-api-btn'
+    );
+    this.randomQuoteViaOwnApiBtn = document.getElementById(
+      'random-quote-own-api-btn'
+    );
 
     this.init();
   }
@@ -28,26 +33,31 @@ class RandomQuotesApp {
     this.changeCurrentQuote(RandomQuote.getRandomQuote());
   }
 
-  async getRandomQuoteViaAPIHandler() {
-    this.changeCurrentQuote(await RandomQuote.getRandomQuoteViaAPI());
-    //вариант с константой:
-    // const quoteViaApi = await RandomQuote.getRandomQuoteViaAPI();
-    // this.changeCurrentQuote(quoteViaApi);
-  }
-
-  //вариант без async await:
-  // getRandomQuoteViaAPI() {
-  //   RandomQuote.getRandomQuoteViaAPI().then((quote) =>
-  //     this.changeCurrentQuote(quote)
-  //   );
+  // async handleRandomQuoteViaOwnAPI() {
+  //   this.changeCurrentQuote(await RandomQuote.getRandomQuoteViaOwnAPI());
   // }
+
+  // async handleRandomQuoteViaPublicAPI() {
+  //   this.changeCurrentQuote(await RandomQuote.getRandomQuoteViaPublicAPI());
+  // }
+
+  async handleRandomQuoteViaApi(apiIsOwn = false) {
+    this.changeCurrentQuote(
+      apiIsOwn
+        ? await RandomQuote.getRandomQuoteViaOwnAPI()
+        : await RandomQuote.getRandomQuoteViaPublicAPI()
+    );
+  }
 
   init() {
     this.randomQuoteBtn.addEventListener('click', () =>
       this.randomQuoteHandler()
     );
-    this.randomQuoteViaApi.addEventListener('click', () =>
-      this.getRandomQuoteViaAPIHandler()
+    this.randomQuoteViaPublicApiBtn.addEventListener('click', () =>
+      this.handleRandomQuoteViaPublicAPI()
+    );
+    this.randomQuoteViaOwnApiBtn.addEventListener('click', () =>
+      this.handleRandomQuoteViaOwnAPI(true)
     );
   }
 }
