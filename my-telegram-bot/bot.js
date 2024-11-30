@@ -9,7 +9,7 @@ const port = process.env.PORT || 3000; // Используйте перемен�
 const bot = new TelegramBot(token);
 
 // Настройка вебхуков
-const webhookUrl = `https://random-quotes-bot.onrender.com/mybot`;
+const webhookUrl = `https://random-quotes-oop-my-1.onrender.com/mybot`;
 
 bot.setWebHook(webhookUrl);
 
