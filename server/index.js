@@ -2,7 +2,7 @@ const express = require('express');
 const quotes = require('./data/quotes');
 const cors = require('cors');
 const app = express();
-const PORT = 2000;
+const PORT = 3000;
 
 function getRandomQuote() {
   const randomIndex = Math.floor(Math.random() * quotes.length);
