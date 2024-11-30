@@ -1,7 +1,7 @@
 const TelegramBot = require('node-telegram-bot-api');
 const express = require('express');
 
-const token = '7355670727:AAGKQR4De9RK7UU0MAf1ug1Wx35WKUlrx4c';
+const token = process.env.TELEGRAM_TOKEN;
 const app = express();
 const port = process.env.PORT || 3000; // Используйте переменную окружения PORT или стандартный порт 3000
 
